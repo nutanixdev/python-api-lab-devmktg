@@ -21,7 +21,7 @@ If you were to change `<cluster_virtual_ip>` to your cluster IP address and brow
 
 Now that we have our API request URL, we can add HTTP Basic Authentication in the form of a username and password, then simulate the entire request using cURL.  For this quick test we will assume the following:
 
-- **Cluster virtual IP address** - *your Cluser IP address*
+- **Cluster virtual IP address** - *your Cluster IP address*
 - **Cluster username** - <your cluster username>
 - **Cluster password** - <your cluster password>>
 
