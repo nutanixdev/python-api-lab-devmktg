@@ -1,4 +1,4 @@
-.. title:: Nutanix Python API Lab
+.. title:: Nutanix Python API Lab v1.2
 
 .. toctree::
   :maxdepth: 2
@@ -7,14 +7,25 @@
   :hidden:
 
   .. example/index
-  contents/lab
+  contents/intro
+  contents/setup
+  contents/structure
+  contents/classes
+  contents/initialisation
+  contents/first_run
+  contents/supporting
+  contents/visuals
+  contents/javascript
+  contents/api_request
+  contents/testing
+  contents/thoughts  
 
 .. _welcome:
 
 Welcome
 #######
 
-Welcome to Nutanix API Getting Started Lab (Python) - v1.1.
+Welcome to Nutanix API Getting Started Lab (Python) - v1.2.
 
 .. _getting_started:
 
@@ -43,69 +54,36 @@ Requirements
 To successfully complete this lab, you will need an environment that meets the following specifications.
 
 - Previous experience with Python is recommended but not strictly mandatory
-- An installation of Python 3.6 or later.  For OS-specific information, please see the next section.
-- Python `pip` for Python 3.6.
+- An installation of Python 3.8 or later.  For OS-specific information, please see the next section.
+- Python `pip` for Python 3.8.
 - Python Flask.  On **most** systems this should be case of running `pip3 install flask`.   On Windows, `pip3.exe` is in the `Scripts` folder within the Python install location.
-- The text editor of your choice.  A good suggestion is Visual Studio Code_ as it is free and supports Python development via plugin.
+- The text editor of your choice.  A good suggestion is `Visual Studio Code <https://code.visualstudio.com/>`_ as it is free and supports Python development via plugin.
 - cURL
 - cURL (for Windows - see below).
 
-.. _code: https://code.visualstudio.com/
-
-Python 3.6 on OS X
+Python 3.8 on OS X
 ------------------
 
-- Install Python 3.6 on OS X by downloading the OS X installation package_.
+- Install Python 3.8 on OS X by downloading the `OS X installation package <https://www.python.org/downloads/mac-osx/>`_.
 
-.. _package: https://www.python.org/downloads/mac-osx/
+Python 3.8 on Ubuntu 20.04 or later
+-----------------------------------
 
-Python 3.6 on Ubuntu 18.04
---------------------------
+No manual steps are required as Python 3.8 is the default version of Python bundled with Ubuntu 20.04 (at the time of writing this lab) 
 
-From the terminal, the following commands can be used to install Python 3.6:
-
-.. code-block:: bash
-
-    sudo apt-get -y update
-    sudo apt-get -y install curl
-    sudo apt-get -y install python3-dev python3-pip
-    sudo apt-get -y install python3-venv
-    sudo apt-get -y install python3-setuptools
-
-Python 3.6 on CentOS 7
-----------------------
-
-From the terminal, the following commands can be used to install Python 3.6:
-
-.. code-block:: bash
-
-    sudo yum -y update
-    sudo yum -y install curl
-    sudo yum -y install epel-release
-    sudo yum -y install python36
-    python3.6 -m ensurepip
-    sudo yum -y install python36-setuptools
-
-Python 3.6 and cURL on Windows
+Python 3.8 and cURL on Windows
 ------------------------------
 
-- Install Python 3.6 by downloading the Python 3.6 installer_.
-- Install cURL from the cURL website_.
-
-.. _installer: https://www.python.org/downloads/release/python-360/
-.. _website: https://curl.haxx.se/windows/
-
-.. note::
-
-  If you are running through this lab using Nutanix Frame, Python 3.6 has been installed in the c:\python36 directory.  cURL has also been installed in the c:\tools directory.
+- Install Python 3.8 by downloading the `Python 3.8 installer <https://www.python.org/downloads/release/python-380/>`_.
+- Install cURL from the `cURL website <https://curl.haxx.se/windows/>`_.
 
 Note that cURL is not required to create the demo app.  cURL command samples are provided throughout the lab and may be used for reference at any time.  This is due to its cross-platform nature vs supporting platform-specific commands (e.g. PowerShell).
 
-**Note re Windows systems:** As at January 2019, a **default** installation of Python 3.6 will be installed in the following folder:
+**Note re Windows systems:** As at April 2021, a **default** installation of Python 3.8 will be installed in the following folder:
 
 .. code-block:: bash
 
-    C:\Users\<username>\AppData\Local\Programs\Python\Python36
+    C:\Users\<username>\AppData\Local\Programs\Python\Python38
 
 .. _optional_components:
 
@@ -114,13 +92,9 @@ Optional Components
 
 In addition to the requirement components above, the following things are "nice to have".  They are not mandatory for these labs.
 
-- A Github account.  This can be created by signing up directly through GitHub_.
-- The GitHub Desktop_ application (available for Windows and Mac only)
-- Postman_, one of the most popular API testing tools available.
-
-.. _GitHub: https://github.com/
-.. _Desktop: https://desktop.github.com/
-.. _Postman: https://www.getpostman.com/
+- A `Github <https://github.com/>`_ account.  This can be created by signing up directly through GitHub.
+- The `GitHub Desktop <https://desktop.github.com/>`_ application (available for Windows and Mac only)
+- `Postman <https://www.getpostman.com/>`_, one of the most popular API testing tools available.
 
 .. _cluster_details:
 
