@@ -30,7 +30,7 @@ This file is the **ApiClient** class and describes what an API request looks lik
 
   .. code-block:: python
 
-        #!/usr/bin/env python3.6
+        #!/usr/bin/env python3.8
 
         import sys
         import requests

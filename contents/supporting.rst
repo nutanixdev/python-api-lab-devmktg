@@ -72,9 +72,7 @@ Referencing Supporting Files
 
 - Open `lab/__init__.py` and, under the line that reads `assets = Environment(app)`, add the following Python code.
 
-  **Important note:** Python has strict indentation_ requirements.  For the code below, make sure the indentation begins at the same point as the `assets = Environment(app)` line.
-
-  .. _indentation: https://docs.python.org/3.6/reference/lexical_analysis.html
+  **Important note:** Python has strict `indentation <https://docs.python.org/3.8/reference/lexical_analysis.html>`_ requirements.  For the code below, make sure the indentation begins at the same point as the `assets = Environment(app)` line.
 
   .. code-block:: python
 
