@@ -22,8 +22,8 @@ If you were to change `<cluster_virtual_ip>` to your cluster IP address and brow
 Now that we have our API request URL, we can add HTTP Basic Authentication in the form of a username and password, then simulate the entire request using cURL.  For this quick test we will assume the following:
 
 - **Cluster virtual IP address** - *your Cluser IP address*
-- **Cluster username** - admin
-- **Cluster password** - techX2019!
+- **Cluster username** - <your cluster username>
+- **Cluster password** - <your cluster password>>
 
 .. code-block:: bash
 
@@ -32,6 +32,6 @@ Now that we have our API request URL, we can add HTTP Basic Authentication in th
      -H 'Accept: application/json' \
      -H 'Content-Type: application/json' \
      --insecure \
-    --basic --user admin:nutanix4u
+    --basic --user <your cluster username>:<your cluster password>
 
 Please be mindful of the `--insecure` parameter, as detailed in the lab intro.

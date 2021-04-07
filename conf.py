@@ -48,9 +48,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Nutanix Tech Summit 2019'
-copyright = u'2018 Nutanix'
-author = u'Nutanix Global Technical Enablement'
+project = u'Developer Marketing Python API Lab v1.2'
+copyright = u'2021 Nutanix'
+author = u'Chris Rasmussen, Developer Content Architect'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
