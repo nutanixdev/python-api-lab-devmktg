@@ -46,8 +46,6 @@ Now that we are familiar with the simple JavaScript code that will make the AJAX
 
 This Python code is stored in `lab/ajax.py`.
 
-The following code will prevent Python from throwing warnings about insecure connections over HTTPS.  This should only be done in development or testing environments; please be aware of the security implications of doing this in production.
-
 .. code-block:: python
 
    """
@@ -56,6 +54,8 @@ The following code will prevent Python from throwing warnings about insecure con
    in a production environment!
    """
    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+The code block above will prevent Python from throwing warnings about insecure connections over HTTPS.  This should only be done in development or testing environments; please be aware of the security implications of doing this in production.
 
 .. code-block:: python
 
