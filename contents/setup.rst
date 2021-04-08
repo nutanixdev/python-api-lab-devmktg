@@ -1,6 +1,6 @@
-------------------------------------------
-Nutanix Prism REST APIs + Python Flask Lab
-------------------------------------------
+---------
+Lap Setup
+---------
 
 Overview
 ++++++++
@@ -17,7 +17,7 @@ The Nutanix API + Python Flask Lab will cover a couple of key points.
 Lab Setup
 +++++++++
 
-For this lab your laptop of workstation will need to be configured with Python Flask and all required dependencies.
+For this lab your laptop or workstation will need to be configured with Python Flask and all required dependencies.  In an upcoming section, you will be guided through creating an easy installation method to satisfy all dependencies.
 
 Project Location
 ................
@@ -140,10 +140,6 @@ Firstly, make sure you have created and activated a virtual environment, as outl
 
 Now, to ensure our dependencies are available, let's install our app for the first time.  This process will now make use of our `requirements.txt` dependencies file.
 
-.. note::
-
-   Note: The trailing period below (`.`) is required.
-
 .. figure:: images/linux_logo_32x32.png
 .. figure:: images/osx_logo_32x32.png
 
@@ -165,4 +161,4 @@ If all dependencies have been found and installed correctly, the end of the outp
 
 .. figure:: images/dependencies_installed.png
 
-Now our environment is setup to run our Python Flask application using Nutanix REST APIs.
+Our environment is now setup to run our Python Flask application using Nutanix Prism REST APIs.

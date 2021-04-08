@@ -81,7 +81,7 @@ This file is the **ApiClient** class and describes what an API request looks lik
 A few things to note about this class:
 
 - The `__init__` function runs when the class is instantiated and describes **how** it should be instantiated.
-- In our ApiClient class, we are setting some properties of the class, such as the IP address of our cluster, the cluster and password (etc).
+- In our `ApiClient` class, we are setting some properties of the class, such as the IP address of our cluster, the cluster credentials (etc).
 - The `get_info` function is called on-demand after the class is instantiated and carries out the actual API request.
 - The `try` section of the `get_info` function attempts to complete the API request and get an HTTP response from the Nutanix API.
 - The remaining `except` sections specify various exceptions that can be caught and dealt with accordingly.  For example, looking for `r.status_code >= 500` will catch any HTTP 500 errors.  This type of catch-all is bad practice in production environments but suits our basic demo requirements well enough.

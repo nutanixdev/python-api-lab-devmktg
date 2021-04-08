@@ -56,7 +56,7 @@ To successfully complete this lab, you will need an environment that meets the f
 - Previous experience with Python is recommended but not strictly mandatory
 - An installation of Python 3.8 or later.  For OS-specific information, please see the next section.
 - Python `pip` for Python 3.8.
-- Python Flask.  On **most** systems this should be case of running `pip3 install flask`.   On Windows, `pip3.exe` is in the `Scripts` folder within the Python install location.
+- Python Flask.  The lab will walk you through creating an easy to use installation file, allowing dependency installation on all supporting operating systems.
 - The text editor of your choice.  A good suggestion is `Visual Studio Code <https://code.visualstudio.com/>`_ as it is free and supports Python development via plugin.
 - cURL
 - cURL (for Windows - see below).

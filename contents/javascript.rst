@@ -81,4 +81,4 @@ Here are the most important steps carried out by this function:
 
 .. note::
 
-  You'll notice a few parameters being passed during instantiation of the ApiClient class.  As an optional step, open `lab/util/apiclient/__init__.py` and look at the other parameters that can be passed.  For example, you can specify the API endpoint we're interested and the API version.  These are useful options for using the same ApiClient class with different versions of the APIs.
+  You'll notice a few parameters being passed during instantiation of the ApiClient class.  As an optional step, open `lab/util/apiclient/__init__.py` and look at the other parameters that can be passed.  For example, you can specify the API endpoint and the API version.  These are useful options for using the same ApiClient class with different versions of the Nutanix Prism REST APIs.

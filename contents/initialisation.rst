@@ -16,7 +16,7 @@ CSRF protection isn't strictly required for demo or isolated applications, but i
 
   .. note::
 
-     Please note that `config.py` should **not** be in the `lab/` folder.
+     Please note that `config.py` should be in the project's root directory i.e. `~/python-lab`, and should **not** be in the `lab/` folder.
 
   - Add the following content to `config.py`:
 

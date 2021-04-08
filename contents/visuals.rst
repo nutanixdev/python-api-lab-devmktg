@@ -227,7 +227,7 @@ Inside the `templates` folder we are going to create two templates.  These are a
 - `index`, the application's main view i.e. the one that we'll actually see.
 
 Both templates are mostly HTML, with the exception of a few placeholders.
-The placeholders are identified by being enclosed in `{{` and `}}` and will be replaced with dynamic data when the template is rendered.
+The placeholders are identified by being enclosed in Jinja `{{` and `}}` delimiters and will be replaced with dynamic data when the template is rendered.  Please see the `official Python Flask "Templates" documentation <https://flask.palletsprojects.com/en/1.1.x/tutorial/templates/>`_ for detailed info on the `{{ }}` delimiters.
 
 - Create `lab/templates/base.html`
 - Add the following content to `lab/templates/base.html`:
@@ -253,7 +253,7 @@ The placeholders are identified by being enclosed in `{{` and `}}` and will be r
                      <div class="collapse navbar-collapse">
                          <ul class="nav navbar-nav">
                              <li><a href="#">Home</a></li>
-                             <li><a href="#" class="defaultLayout">Revert to Default Layout</a></li>-->
+                             <li><a href="#" class="defaultLayout">Revert to Default Layout</a></li>
                          </ul>
                          <form method="post" class="navbar-form navbar-left">
                              <div class="form-group">

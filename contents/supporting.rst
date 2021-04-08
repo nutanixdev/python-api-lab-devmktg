@@ -103,4 +103,8 @@ Referencing Supporting Files
 
   This code block registers two 'bundles' that allow our app to correctly load and access the JavaScript and CSS files.  Firstly, the bundles are created as `home_css` and `home_js`, then registered as application assets using `assets.register`.
 
+  When properly added, the relevant section of `__init__.py` will look as follows - note the correct indentation:
+
+  .. figure:: images/python_indentation.png
+
 With this done, we can continue with working on our application.

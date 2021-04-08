@@ -1,7 +1,7 @@
 App Structure
 +++++++++++++
 
-Now we have a good understanding of the history and progression of the Nutanix REST APIs, lets get to using them inside of our Python Flask application.
+Now we have a good understanding of the history and progression of the Nutanix Prism REST REST APIs, lets get to using those APIs inside our Python Flask application.
 
 Key Directories
 ...............
@@ -35,9 +35,11 @@ We'll create these files as we go through the lab, but here is some info about w
 - `config.py`, the Python script that contains configuration information.  Note that this file is **not** in the `lab` folder!
 - `lab/index.py`, the Python blueprint responsible for handling the `/` route (URL).
 
+Git "ignore" File
+.................
+
 In addition to the actual project files, most of which don't exist yet, the Git `.gitignore` file for this application is as follows.
-This specific `.gitignore` file is often used with Python projects.
-For our app, the `instance/` line has been added.
+This specific `.gitignore` file is often used with Python projects.  For our app, the `instance/` line has been added.
 If you are using Git to manage your project's source, this `.gitignore` is a good one to use.
 
 .. code-block:: bash
