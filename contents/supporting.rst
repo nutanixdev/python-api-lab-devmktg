@@ -105,6 +105,6 @@ Referencing Supporting Files
 
   When properly added, the relevant section of `__init__.py` will look as follows - note the correct indentation:
 
-  .. figure:: images/python_indentation.png
+  .. figure:: images/python_indentation.pngpython_indentation.png
 
 With this done, we can continue with working on our application.

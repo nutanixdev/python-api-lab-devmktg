@@ -21,6 +21,10 @@ Since we are developing a simple demo application, we only have two requirements
 
 - Run the application:
 
+  **Note**: If you are on Mac OS X and are prompted to allow incoming connections (see screenshot below), please click **Allow**.
+
+  .. figure:: images/first_run_prompt.png
+
 .. figure:: images/linux_logo_32x32.png
 .. figure:: images/osx_logo_32x32.png
 
