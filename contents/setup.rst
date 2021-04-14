@@ -1,5 +1,5 @@
 ---------
-Lap Setup
+Lab Setup
 ---------
 
 Overview
