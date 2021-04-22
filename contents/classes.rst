@@ -119,7 +119,7 @@ A few things to note about this class:
 Code Format
 ...........
 
-If you are new to Python but have exposure to other languages, you may be asking - why is the `__init__.py` file formatted that way?  Isn't that an excessive amount of whitespace?  The answer is yes, it is a lot of whitespace, but with good reason.  All `.py`. files in this project have been formatted using `black <https://pypi.org/project/black/>`_, a very popular Python code formatter.  Using a code formatter like this ensures all your Python code is formatted consistently at all times and is a good habit to get into.
+If you are new to Python but have exposure to other languages, you may be asking - why is the `__init__.py` file formatted that way?  Isn't that an excessive amount of whitespace?  The answer is yes, it is a lot of whitespace, but with good reason.  All `.py` files in this project have been formatted using `black <https://pypi.org/project/black/>`_, a very popular Python code formatter.  Using a code formatter like this ensures all your Python code is formatted consistently at all times and is a good habit to get into.
 
 For this project, you may recall we specified **black==20.8b1** in our `requirements.txt` file.  If at any stage you'd like to reformat your files, you can run the following command from the **lab root** directory; the `nutanix` virtual environment will be excluded as it can take some time to process and doesn't need to be reformatted.
 
