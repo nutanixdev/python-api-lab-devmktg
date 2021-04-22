@@ -4,40 +4,55 @@ JavaScript and AJAX
 The JavaScript Function
 .......................
 
-The `ajax` view is a key part of our application.  It gets used via various JavsScript functions, stored in `lab/static/js/ntnx.js` file.  When the user enters their cluster or CVM IP address, credentials and hits the 'Go!' button, JavaScript makes various calls to the Nutanix APIs.  These calls are handled via `AJAX <https://en.wikipedia.org/wiki/Ajax_(programming)>`_ so the user's browser doesn't get refreshed every time.
+The `ajax` view is a key part of our application.  It gets used via various JavsScript functions, stored in `lab/static/js/ntnx.js` file.  When the user enters their Prism Central IP address and credentials then hits the 'Go!' button, JavaScript makes various calls to the Nutanix Prism Central v3 REST APIs (plus one other that we'll talk about shortly).  These calls are handled via `AJAX <https://en.wikipedia.org/wiki/Ajax_(programming)>`_ so the user's browser doesn't get refreshed every time.
 
-As an example, let's first take a look at the JavaScript function that gets a count of VMs running on our cluster.
+So that we're following a very well-known principle known as DRY (don't repeat yourself), almost all requests to the Nutanix Prism Central v3 REST APIs in our app are handled via a single function named **pcListEntities**.  This function accepts a number of parameters, the most important of which is the **entity** parameter.  By altering the **entity** parameter, we can instruct the Prism Central v3 REST APIs to return a list of entities of that type.  For example, can pass "vm", "cluster" (etc).
+
+Here's what the **pcListEntities** function looks like.
 
 .. code-block:: JavaScript
 
-   vmInfo: function( cvmAddress, username, password )
-   {
+   pcListEntities: function( cvmAddress, username, password, entity, pageElement, elementTitle ) {
 
-       vmData = $.ajax({
-           url: '/ajax/vm-info',
+       pcEntityInfo = $.ajax({
+           url: '/ajax/pc-list-entities',
            type: 'POST',
            dataType: 'json',
-           data: { _cvmAddress: cvmAddress, _username: username, _password: password },
+           data: { _cvmAddress: cvmAddress, _username: username, _password: password, _entity: entity, _pageElement: pageElement, _elementTitle: elementTitle },
        });
 
-       vmData.success( function(data) {
-           NtnxDashboard.resetCell( 'vmInfo' );
-           $( '#vmInfo' ).addClass( 'info_big' ).append( '<div style="color: #6F787E; font-size: 25%; padding: 10px 0 0 0;">VM(s)</div><div>' + data['metadata']['count'] + '</div><div></div>');
+       pcEntityInfo.done( function(data) {
+
+           NtnxDashboard.resetCell( pageElement );
+           $( '#' + pageElement  ).addClass( 'info_big' ).append( '<div style="color: #6F787E; font-size: 25%; padding: 10px 0 0 0;">' + elementTitle + '</div><div>' + data.metadata.total_matches + '</div><div></div>');
+
+           switch( entity ) {
+               case 'project':
+
+                   $( '#project_details' ).addClass( 'info_big' ).html( '<div style="color: #6F787E; font-size: 25%; padding: 10px 0 0 0;">Project List</div>' );
+
+                   $( data.entities ).each( function( index, item ) {
+                       $( '#project_details' ).append( '<div style="color: #6F787E; font-size: 25%; padding: 10px 0 0 0;">' +  item.status.name + '</div>' );
+                   });
+
+                   $( '#project_details' ).append( '</div><div></div>' );
+
+               default:
+                   break;
+           }
+
        });
 
-       vmData.fail(function ( jqXHR, textStatus, errorThrown )
-       {
-           console.log('error getting vm info')
-       });
    },
+   /* pcListEntities */
 
 Here are the most important steps carried out by this function:
 
-- `vmInfo: function( cvmAddress, username, password )` - the name of the function, accepting the cluster/CVM IP address & and credentials.
-- `vmData = $.ajax({` - use `jQuery <https://jquery.com/>`_ to initiate an AJAX request.
-- `url: '/ajax/vm-info',` - the URL of the AJAX call that will be made.
-- The block beginning with `vmData.success( function(data) {` - the JavaScript that will run when the AJAX call is successful.
-- The block beginning with `vmData.fail(function ( jqXHR, textStatus, errorThrown )` - displays a message in the browser console when any error is encountered.  Of course, this "catch-all" approach is something that should be avoided before deploying to or developing for a production environment, but provides information that can be used to diagnose an issue.
+- `pcListEntities: function( cvmAddress, username, password, entity, pageElement, elementTitle ) {` - the name of the function, accepting the parameters that define the type of entity info being requested.
+- `pcEntityInfo = $.ajax({` - use `jQuery <https://jquery.com/>`_ to initiate an AJAX request.
+- `url: '/ajax/pc-list-entities',` - the URL of the AJAX call that will be made.
+- The block beginning with `pcEntityInfo.done( function(data) {` - the JavaScript that will run when the AJAX call has finished.
+- The switch block beginning with `switch( entity ) {` - only step into that code block if the `pcListEntities` function has been used to specifically request information on Prism Central projects.
 
 The AJAX
 ........
@@ -59,23 +74,27 @@ The code block above will prevent Python from throwing warnings about insecure c
 
 .. code-block:: python
 
-  """
-  get the vm count
-  """
-  @bp.route('/vm-info',methods=['GET','POST'])
-  def vm_info():
-      # get the request's POST data
-      get_form()
-      client = apiclient.ApiClient('get', cvmAddress,'vms','',username,password,'v2.0')
-      results = client.get_info()
-      return jsonify(results)
+   @bp.route("/pc-list-entities", methods=["POST"])
+   def pc_list_entities():
+       # get the request's POST data
+       get_form()
+       client = apiclient.ApiClient(
+           method="post",
+           cluster_ip=cvmAddress,
+           request=f"{entity}s/list",
+           entity=entity,
+           body=f'{{"kind": "{entity}"}}',
+           username=username,
+           password=password,
+       )
+       results = client.get_info()
+       return jsonify(results)
 
 Here are the most important steps carried out by this function:
 
-- `@bp.route('/vm-info',methods=['GET','POST'])` - Specify the URL that will respond to the AJAX call and allow both GET and POST methods.  During testing it can be useful to allow both methods, although production apps would only allow the methods that are explicitly required.
-- `get_form()` - Get the user data available in the POST request.  This includes the CVM/Cluster IP address, username and password.
-- `client = apiclient.ApiClient('get', cvmAddress,'vms','',username,password,'v2.0')` - Create an instance of our `ApiClient` class and set the properties we'll need to execute the API request.
-
+- `@bp.route("/pc-list-entities", methods=["POST"])` - Specify the URL that will respond to the AJAX call and allow the POST method **only**.
+- `get_form()` - Get the user data available in the POST request.  This includes the CVM/Cluster IP address, entity, username and password.
+- Block beginning with `client = apiclient.ApiClient(` - Create an instance of our `ApiClient` class and set the properties we'll need to execute the API request.
 - `results = client.get_info()` - Execute the actual API request.
 - `return jsonify(results)` - Convert the API request results to JSON format and return the JSON back to the calling JavaScript, where it will be processed and displayed in our app.
 

@@ -1,7 +1,7 @@
 Application first run
 .....................
 
-Since we are developing a simple demo application, we only have two requirements to run our app.  Run these commands in the application's main folder i.e. **not** in the `lab/` folder.
+Since we are developing a simple demo application, we only have two requirements to run our app.
 
 **Important note**: If you are running this lab on a non-US keyboard, you may require an additional step to ensure Flask runs properly.  The commands below are temporary and won't permanently modify your system.
 
@@ -25,28 +25,28 @@ Since we are developing a simple demo application, we only have two requirements
 
   .. figure:: images/first_run_prompt.png
 
-.. figure:: images/linux_logo_32x32.png
-.. figure:: images/osx_logo_32x32.png
+  .. figure:: images/linux_logo_32x32.png
+  .. figure:: images/osx_logo_32x32.png
 
-.. code-block:: bash
+  .. code-block:: bash
 
-  flask run --host 0.0.0.0
+     flask run --host 0.0.0.0
 
-.. figure:: images/windows_logo_32x32.png
+  .. figure:: images/windows_logo_32x32.png
 
-.. code-block:: bash
+  .. code-block:: bash
 
-  flask run
+     flask run
 
-At this point, Python Flask tells us exactly what to do in order to test the beginnings of our application:
+  At this point, Python Flask tells us exactly what to do in order to test the beginnings of our application:
 
-.. code-block:: bash
+  .. code-block:: bash
 
-   * Running on http://<ip_address>:5000/ (Press CTRL+C to quit)
+     * Running on http://<ip_address>:5000/ (Press CTRL+C to quit)
 
 - Browse to http://127.0.0.1:5000 on your local machine
 
-  If everything is working, you'll get an error saying the requested URL was not found on the server.  This is expected, since we haven't yet told Flask how to handle requests for the root (`/`) URL.
+  Contrary to what you may expect, everything is working as expected if you see an error saying the requested URL was not found on the server.  This is because we haven't yet told Flask how to handle requests for the root (`/`) URL.
 
   Check the output in your console/terminal and you'll also see the 404 error reflected there, as expected.
 

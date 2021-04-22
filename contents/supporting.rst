@@ -46,26 +46,26 @@ Adding Third Party Files
 
 - From the URLs below, grab the relevant file, make sure the name is correct and extract it into the appropriate directory.
 
-  - `CSS <https://github.com/nutanixdev/lab-assets/blob/master/python-lab-v1/css-lib.zip?raw=true>`_ - extract to **lab/static/css/lib/**
-  - `Fonts <https://github.com/nutanixdev/lab-assets/blob/master/python-lab-v1/fonts.zip?raw=true>`_ - extract to **lab/static/css/fonts/**
-  - `JavaScript <https://github.com/nutanixdev/lab-assets/blob/master/python-lab-v1/js-lib.zip?raw=true>`_ - extract to **lab/static/js/lib/**
+  - `CSS <https://github.com/nutanixdev/lab-assets/raw/master/python-lab-v1.3/css-lib.zip>`_ - extract to **lab/static/css/lib/**
+  - `Fonts <https://github.com/nutanixdev/lab-assets/raw/master/python-lab-v1.3/fonts.zip>`_ - extract to **lab/static/css/fonts/**
+  - `JavaScript <https://github.com/nutanixdev/lab-assets/raw/master/python-lab-v1.3/js-lib.zip>`_ - extract to **lab/static/js/lib/**
 
 .. note::
 
   If extracting the ZIP files from the command line, ensure they are extracted **directly** to the directories above and not into subdirectories.
 
-  Once the files are downloaded and extracted to the correct locations, your directory structure should be as follows:
+Once the files are downloaded and extracted to the correct locations, your directory structure should be as follows - please double-check these, as files being copied to incorrect locations will prevent the app from functioning correctly.
 
-  .. figure:: images/public_structure.png
+.. figure:: images/public_structure.png
 
 Adding Custom Files
 ...................
 
-- From the URLs below, grab the relevant file, make sure the name is correct and copy it into the appropriate directory.
+- From the URLs below, download each file, make sure the name is correct and copy it into the appropriate directory.
 
-  - `ntnx.css <https://raw.githubusercontent.com/nutanixdev/lab-assets/master/python-lab-v1/ntnx.css>`_ - copy to **lab/static/css**
-  - `ntnx.js <https://raw.githubusercontent.com/nutanixdev/lab-assets/master/python-lab-v1/ntnx.js>`_ - copy to **lab/static/js**
-  - `dashboard.json <https://raw.githubusercontent.com/nutanixdev/lab-assets/master/python-lab-v1/dashboard.json>`_ - copy to **lab/static/layouts**
+  - `ntnx.css <https://raw.githubusercontent.com/nutanixdev/lab-assets/master/python-lab-v1.3/ntnx.css>`_ - copy to **lab/static/css**
+  - `ntnx.js <https://raw.githubusercontent.com/nutanixdev/lab-assets/master/python-lab-v1.3/ntnx.js>`_ - copy to **lab/static/js**
+  - `dashboard.json <https://raw.githubusercontent.com/nutanixdev/lab-assets/master/python-lab-v1.3/dashboard.json>`_ - copy to **lab/static/layouts**
 
 Referencing Supporting Files
 ............................
@@ -103,7 +103,7 @@ Referencing Supporting Files
 
   This code block registers two 'bundles' that allow our app to correctly load and access the JavaScript and CSS files.  Firstly, the bundles are created as `home_css` and `home_js`, then registered as application assets using `assets.register`.
 
-  When properly added, the relevant section of `__init__.py` will look as follows - note the correct indentation:
+  When properly added, the relevant section of `__init__.py` will look as follows - **note the correct indentation**:
 
   .. figure:: images/python_indentation.png
 

@@ -1,4 +1,4 @@
-.. title:: Nutanix Python API Lab v1.2
+.. title:: Nutanix Python API Lab v1.3
 
 .. toctree::
   :maxdepth: 2
@@ -25,7 +25,7 @@
 Welcome
 #######
 
-Welcome to Nutanix API Getting Started Lab (Python) - v1.2.
+Welcome to Nutanix Prism REST API Getting Started Lab (Python) - v1.3.
 
 .. _getting_started:
 
@@ -35,8 +35,8 @@ What We Are Doing
 The Nutanix Python API Lab will cover a couple of key points.
 
 - Creation of a simple Python Flask web application.
-- Creation of a single basic view to display cluster details for the user.
-- A backend model to talk to the Nutanix APIs.
+- Creation of a single basic view to display Prism Central environment details for the user.
+- A backend model to talk to the Nutanix Prism Central v3 REST APIs.
 - JavaScript to create the interface between the front- and back-end parts of the application.
 
 .. _requirements:
@@ -44,7 +44,7 @@ The Nutanix Python API Lab will cover a couple of key points.
 What We Aren't Doing
 ####################
 
-This lab is not intended as a guide that can be used to learn Python development.  While the copy & paste steps will allow you to create a working application, previous experience with Python will aid you in understanding what each section does.
+This lab is not intended as a guide that can be used to learn Python development from scratch.  While the copy & paste steps will allow you to create a working application, previous experience with Python may aid you in understanding what each section does.
 
 However, the lab will include links to valuable explanation and learning resources that can be used at any time for more information on each section.  For example, the general structure of this application is almost identical to the one provided by the official Python Flask tutorial and will often link to resources there.
 
@@ -53,7 +53,7 @@ Requirements
 
 To successfully complete this lab, you will need an environment that meets the following specifications.
 
-- Previous experience with Python is recommended but not strictly mandatory
+- Previous experience with Python may be beneficial but is not strictly mandatory.
 - An installation of Python 3.8 or later.  For OS-specific information, please see the next section.
 - Python `pip` for Python 3.8.
 - Python Flask.  The lab will walk you through creating an easy to use installation file, allowing dependency installation on all supporting operating systems.
@@ -90,7 +90,7 @@ Note that cURL is not required to create the demo app.  cURL command samples are
 Optional Components
 ###################
 
-In addition to the requirement components above, the following things are "nice to have".  They are not mandatory for these labs.
+In addition to the requirement components above, the following things are "nice to have".  They are not supplementary only and are not required this lab.
 
 - A `Github <https://github.com/>`_ account.  This can be created by signing up directly through GitHub.
 - The `GitHub Desktop <https://desktop.github.com/>`_ application (available for Windows and Mac only)

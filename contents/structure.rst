@@ -1,14 +1,14 @@
 App Structure
 +++++++++++++
 
-Now we have a good understanding of the history and progression of the Nutanix Prism REST REST APIs, lets get to using those APIs inside our Python Flask application.
+If you read through the API Intro earlier in this lab, you'll now we have a good understanding of the history and progression of the Nutanix Prism REST APIs.  It is now time to use those APIs inside our Python Flask application.
 
 Key Directories
 ...............
 
 The key directories of our app are as follows.
 
-- A folder called `lab`.  This folder contains our project's code and all associated files.
+- A folder called `lab`.  This folder contains our project's code and all associated files.  Please note this directory is **inside** our **lab root** i.e. **python-lab/lab**
 - `nutanix/`, the folder containing our virtual environment files.
 
 Let's get started!
@@ -23,10 +23,11 @@ Let's get started!
 
      mkdir lab
 
-We'll create these files as we go through the lab, but here is some info about what each part does.
+We'll create these files as we go through the lab, but here is some info about what each file does.
 
 - `lab/__init__.py`, the application's "main" entry point.
 - `lab/static/`, the folder containing our JavaScript, CSS and JSON files that describe our main view's layout.
+- `lab/static/css` and `lab/static/js`, the folder containing our custom CSS and Javascript files
 - `lab/static/js/lib/` and `lab/static/css/lib/`, collections of third-party JavaScripts and CSS to support our app.
 - `lab/templates/`, our HTML layouts.
 - `lab/util/apiclient/__init__.py`, our custom Python class that describes what an API request looks like and the functions associated with it.
@@ -35,10 +36,14 @@ We'll create these files as we go through the lab, but here is some info about w
 - `config.py`, the Python script that contains configuration information.  Note that this file is **not** in the `lab` folder!
 - `lab/index.py`, the Python blueprint responsible for handling the `/` route (URL).
 
+.. note::
+   
+   Please pay special attention to the locations of each file above.  Some files are in the **lab root** i.e. `python-lab`, while others are in the sub-directory called **lab**.
+
 Git "ignore" File
 .................
 
-In addition to the actual project files, most of which don't exist yet, the Git `.gitignore` file for this application is as follows.
+In addition to the actual project files, the recommended Git `.gitignore` file for this application is as follows.
 This specific `.gitignore` file is often used with Python projects.  For our app, the `instance/` line has been added.
 If you are using Git to manage your project's source, this `.gitignore` is a good one to use.
 

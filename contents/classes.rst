@@ -1,7 +1,7 @@
 The ApiClient class
-...................
++++++++++++++++++++
 
-The first file we'll create is one of the most supporting files in the app.
+The first file we'll create is one of the most important supporting files in the app.
 
 This file is the **ApiClient** class and describes what an API request looks like as well as the functions associated with it.
 
@@ -35,48 +35,77 @@ This file is the **ApiClient** class and describes what an API request looks lik
         import sys
         import requests
         from requests.auth import HTTPBasicAuth
-        import json
-
-        class ApiClient():
-
-            def __init__(self, method, cluster_ip, request, body, username, password, version='v3',root_path='api/nutanix'):
+        
+        
+        class ApiClient:
+            def __init__(
+                self,
+                method,
+                cluster_ip,
+                request,
+                body,
+                entity,
+                username,
+                password,
+                version="v3",
+                root_path="api/nutanix",
+            ):
                 self.method = method
                 self.cluster_ip = cluster_ip
                 self.username = username
                 self.password = password
                 self.base_url = f"https://{self.cluster_ip}:9440/{root_path}/{version}"
-                self.entity_type = request
                 self.request_url = f"{self.base_url}/{request}"
                 self.body = body
-
-            def get_info(self, show_info=False):
-
-                if show_info == True:
-                    print(f"Requesting '{self.entity_type}' ...")
-                headers = {'Content-Type': 'application/json; charset=utf-8'}
+                self.entity = entity
+        
+            def get_info(self):
+        
+                headers = {"Content-Type": "application/json; charset=utf-8"}
                 try:
-                    if(self.method == 'post'):
-                        r = requests.post(self.request_url, data=self.body, verify=False, headers=headers, auth=HTTPBasicAuth(self.username, self.password), timeout=60)
+                    if self.method == "post":
+                        r = requests.post(
+                            self.request_url,
+                            data=self.body,
+                            verify=False,
+                            headers=headers,
+                            auth=HTTPBasicAuth(self.username, self.password),
+                            timeout=60,
+                        )
                     else:
-                        r = requests.get(self.request_url, verify=False, headers=headers, auth=HTTPBasicAuth(self.username, self.password), timeout=60)
+                        r = requests.get(
+                            self.request_url,
+                            verify=False,
+                            headers=headers,
+                            auth=HTTPBasicAuth(self.username, self.password),
+                            timeout=60,
+                        )
                 except requests.ConnectTimeout:
-                    print(f'Connection timed out while connecting to {self.cluster_ip}. Please check your connection, then try again.')
+                    print(
+                        f"Connection timed out while connecting to {self.cluster_ip}. Please check your connection, then try again."
+                    )
                     sys.exit()
                 except requests.ConnectionError:
-                    print(f'An error occurred while connecting to {self.cluster_ip}. Please check your connection, then try again.')
+                    print(
+                        f"An error occurred while connecting to {self.cluster_ip}. Please check your connection, then try again."
+                    )
                     sys.exit()
                 except requests.HTTPError:
-                    print(f'An HTTP error occurred while connecting to {self.cluster_ip}. Please check your connection, then try again.')
+                    print(
+                        f"An HTTP error occurred while connecting to {self.cluster_ip}. Please check your connection, then try again."
+                    )
                     sys.exit()
-
+        
                 if r.status_code >= 500:
-                    print(f'An HTTP server error has occurred ({r.status_code}, {r.text})')
+                    print(f"An HTTP server error has occurred ({r.status_code}, {r.text})")
                 else:
                     if r.status_code == 401:
-                        print(f'An authentication error occurred while connecting to {self.cluster_ip}. Please check your credentials, then try again.')
+                        print(
+                            f"An authentication error occurred while connecting to {self.cluster_ip}. Please check your credentials, then try again."
+                        )
                         sys.exit()
-
-                return(r.json())
+        
+                return r.json()
 
 A few things to note about this class:
 
@@ -86,5 +115,16 @@ A few things to note about this class:
 - The `try` section of the `get_info` function attempts to complete the API request and get an HTTP response from the Nutanix API.
 - The remaining `except` sections specify various exceptions that can be caught and dealt with accordingly.  For example, looking for `r.status_code >= 500` will catch any HTTP 500 errors.  This type of catch-all is bad practice in production environments but suits our basic demo requirements well enough.
 - If no exceptions are caught, the JSON response from the API request is returned via `return(r.json())`.
+
+Code Format
+...........
+
+If you are new to Python but have exposure to other languages, you may be asking - why is the `__init__.py` file formatted that way?  Isn't that an excessive amount of whitespace?  The answer is yes, it is a lot of whitespace, but with good reason.  All `.py`. files in this project have been formatted using `black <https://pypi.org/project/black/>`_, a very popular Python code formatter.  Using a code formatter like this ensures all your Python code is formatted consistently at all times and is a good habit to get into.
+
+For this project, you may recall we specified **black==20.8b1** in our `requirements.txt` file.  If at any stage you'd like to reformat your files, you can run the following command from the **lab root** directory; the `nutanix` virtual environment will be excluded as it can take some time to process and doesn't need to be reformatted.
+
+.. code-block:: bash
+
+   black ./ --force-exclude "nutanix\/"
 
 With the basic application structure and main supporting class created, we can move forward with creating the other parts of our app.

@@ -3,35 +3,56 @@ The API request
 
 Because the Nutanix REST APIs are designed to be simple to use, it's very easy to understand what the request itself is doing.
 
-In the **Nutanix API Intro** section of this lab, we looked at the various Nutanix API versions that are available to you.  In the example above, we are using Nutanix API v2.0 to get a count of VMs running on our cluster.  The JavaScript making the AJAX call and the Python executing the API request, are constructing the following GET request.
-
-.. note::
-
-  The request coming from the JavaScript to our Python view is an HTTP POST request.  The request to the API itself, in this example, is an HTTP GET request.
+In the **Nutanix API Intro** section of this lab, we looked at the various Nutanix Prism API versions that are available to you.  In the example from the previous section, we are using Nutanix Prism Central v3 APIs to get list of entities of a specific type.  The JavaScript making the AJAX call and the Python executing the API request are constructing the following POST request.
 
 .. code-block:: html
 
-   https://<cluster_virtual_ip>:9440/api/nutanix/v2.0/vms
+   https://<prism_central_ip>:9440/api/nutanix/v3/vms/list
+
+.. code-block:: json
+
+   {"kind": "vm"}
  
-If you were to change `<cluster_virtual_ip>` to your cluster IP address and browse to that URL, you would probably see an error saying `"An Authentication object was not found in the SecurityContext"`.  That's because we haven't specified the credentials that should be used for the request.
+If you were to change `<prism_central_ip>` to your Prism Central IP address browse to that URL, you would probably see an error as follows:
+
+.. code-block:: json
+
+{"state": "ERROR", "code": 401, "message_list": [{"reason": "AUTHENTICATION_REQUIRED", "message": "Authentication required.", "details": "Basic realm=\"Intent Gateway Login Required\""}], "api_version": "3.1"}
+
+That's because we haven't specified the credentials that should be used for the request and haven't supplied the required JSON POST body that must be sent with the request.  It is important to note that requests to list all entities of a certain type are of type POST, not GET.
 
 .. note::
 
-  If you have an open browser tab where you are already logged in and authenticated with an active Nutanix Prism session, it is possible the request may succeed, depending on your browser's cookie settings.
+  If you have an open browser tab or window where you are already logged in and authenticated with an active Nutanix Prism Central session, it is possible the request may be authenticated but fail with the following error:
 
-Now that we have our API request URL, we can add HTTP Basic Authentication in the form of a username and password, then simulate the entire request using cURL.  For this quick test we will assume the following:
+.. code-block:: json
 
-- **Cluster virtual IP address** - *your Cluster IP address*
-- **Cluster username** - <your cluster username>
-- **Cluster password** - <your cluster password>>
+   {
+       "api_version": "3.1",
+       "code": 400,
+       "kind": "vm",
+       "message_list": [{
+           "message": "Invalid UUID passed. list", 
+           "reason": "INVALID_UUID"
+       }],
+       "state": "ERROR"
+   }
+
+While the connection was successful, the browser is sending an HTTP GET request, while these requests need to be POST.  Furthermore, the error message tells us that **list** is not a valid VM UUID.  For thos reasons, we can't use that URL without the POST body as specified earlier.
+
+Now that we have our API request URL and JSON POST body, we can add HTTP Basic Authentication in the form of a username and password, then simulate the entire request using cURL.
 
 .. code-block:: bash
 
-   curl -X GET \
-     https://<cluster_ip>:9440/api/nutanix/v2.0/vms \
+   curl -X POST \
+     https://<prism_central_ip>:9440/api/nutanix/v3/vms/list \
      -H 'Accept: application/json' \
      -H 'Content-Type: application/json' \
+     --data '{"kind": "vm", "length": 1}' \
      --insecure \
-    --basic --user <your cluster username>:<your cluster password>
+     --basic \
+     --user "<prism_central_username>:<prism_central_password>"
 
-Please be mindful of the `--insecure` parameter, as detailed in the lab intro.
+Please be mindful of the `--insecure` parameter, as detailed in the lab intro.     
+
+This exact POST request structure, including HTTP Basic Authentication, the URL and the JSON POST body are exactly what the **pcListEntities** JavaScript function uses to get lists of VMs, images, etc.
