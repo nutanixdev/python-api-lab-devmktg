@@ -3,7 +3,7 @@ Final Thoughts
 
 With this app built from scratch, you should now have a solid idea of how a Python Flask web application can be built to integrate with the Nutanix Prism Central REST APIs.
 
-For further information on the Nutanix Prism Central REST API versions and the data that is exposed by them, please see the `Nutanix Developer Portal <https://www.nutanix.dev>`_.  There will you find `code samples <https://www.nutanix.dev/code_samples>`_, `documentation <https://www.nutanix.dev/api-reference`>_ and information on everything from the APIs we used today (v1 on Prism Element and v3 on Prism Central) through to additional labs, technical articles and other sample apps.
+For further information on the Nutanix Prism Central REST API versions and the data that is exposed by them, please see the `Nutanix Developer Portal <https://www.nutanix.dev>`_.  There will you find `code samples <https://www.nutanix.dev/code_samples>`_, `documentation <https://www.nutanix.dev/api-reference`>_ and information on everything from the APIs we used today (v2.0 on Prism Element and v3 on Prism Central) through to additional labs, technical articles and other sample apps.
 
 Takeaways
 .........

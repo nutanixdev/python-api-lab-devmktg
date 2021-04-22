@@ -4,7 +4,7 @@ JavaScript and AJAX
 The JavaScript Function
 .......................
 
-The `ajax` view is a key part of our application.  It gets used via various JavsScript functions, stored in `lab/static/js/ntnx.js` file.  When the user enters their Prism Central IP address and credentials then hits the 'Go!' button, JavaScript makes various calls to the Nutanix Prism Central v3 REST APIs (plus one other that we'll talk about shortly).  These calls are handled via `AJAX <https://en.wikipedia.org/wiki/Ajax_(programming)>`_ so the user's browser doesn't get refreshed every time.
+The `ajax` view is a key part of our application.  It gets used via various JavsScript functions, stored in the `lab/static/js/ntnx.js` file.  When the user enters their Prism Central IP address and credentials then hits the 'Go!' button, JavaScript makes various calls to the Nutanix Prism Central v3 REST APIs (plus one other that we'll talk about shortly).  These calls are handled via `AJAX <https://en.wikipedia.org/wiki/Ajax_(programming)>`_ so the user's browser doesn't get refreshed every time.
 
 So that we're following a very well-known principle known as DRY (don't repeat yourself), almost all requests to the Nutanix Prism Central v3 REST APIs in our app are handled via a single function named **pcListEntities**.  This function accepts a number of parameters, the most important of which is the **entity** parameter.  By altering the **entity** parameter, we can instruct the Prism Central v3 REST APIs to return a list of entities of that type.  For example, can pass "vm", "cluster" (etc).
 
@@ -54,6 +54,22 @@ Here are the most important steps carried out by this function:
 - The block beginning with `pcEntityInfo.done( function(data) {` - the JavaScript that will run when the AJAX call has finished.
 - The switch block beginning with `switch( entity ) {` - only step into that code block if the `pcListEntities` function has been used to specifically request information on Prism Central projects.
 
+In addition to the **pcListEntities** function, we have another function named **storagePerformance** that begins as follows:
+
+.. code-block:: javascript
+
+   storagePerformance: function( cvmAddress, username, password ) {
+
+       /* AJAX call to get some container stats */
+       request = $.ajax({
+           url: '/ajax/storage-performance',
+           type: 'POST',
+           dataType: 'json',
+           data: { _cvmAddress: cvmAddress, _username: username, _password: password, _entity: "containers" },
+       });
+
+This function is a special one that deals specifically with getting storagec container performance information for the *first storage container in the first cluster registered to Prism Central*.  In a real-world situation you would request storage performance info for a specific cluster and container.
+
 The AJAX
 ........
 
@@ -97,6 +113,25 @@ Here are the most important steps carried out by this function:
 - Block beginning with `client = apiclient.ApiClient(` - Create an instance of our `ApiClient` class and set the properties we'll need to execute the API request.
 - `results = client.get_info()` - Execute the actual API request.
 - `return jsonify(results)` - Convert the API request results to JSON format and return the JSON back to the calling JavaScript, where it will be processed and displayed in our app.
+
+In addition to the **pc_list_entities** function, `ajax.py` contains another function named **storage_performance**.  Note the code block that begins as shown below:
+
+.. code-block:: python
+
+   @bp.route("/storage-performance", methods=["POST"])
+   def storage_performance():
+       # get the request's POST data
+       get_form()
+
+       # etc
+
+This function is used only when the app needs to request storage container performance information.  Why?  This function makes a number of API requests to different API endpoints:
+
+- Prism Central v3 REST APIs are used to request information about registered clusters.
+- Prism Element v2.0 REST APIs are used when:
+  
+  - Requesting a list of storage containers found on the first registered cluster
+  - Requesting performance information for a specific storage container
 
 .. note::
 
