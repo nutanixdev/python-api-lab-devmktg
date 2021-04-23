@@ -68,7 +68,7 @@ In addition to the **pcListEntities** function, we have another function named *
            data: { _cvmAddress: cvmAddress, _username: username, _password: password, _entity: "containers" },
        });
 
-This function is a special one that deals specifically with getting storagec container performance information for the *first storage container in the first cluster registered to Prism Central*.  In a real-world situation you would request storage performance info for a specific cluster and container.
+This function is a special one that deals specifically with getting storage container performance information for the *first storage container in the first cluster registered to Prism Central*.  In a real-world situation you would request storage performance info for a specific cluster and container.
 
 The AJAX
 ........
@@ -109,7 +109,7 @@ The code block above will prevent Python from throwing warnings about insecure c
 Here are the most important steps carried out by this function:
 
 - `@bp.route("/pc-list-entities", methods=["POST"])` - Specify the URL that will respond to the AJAX call and allow the POST method **only**.
-- `get_form()` - Get the user data available in the POST request.  This includes the CVM/Cluster IP address, entity, username and password.
+- `get_form()` - Get the user data available in the POST request.  This includes the Prism Central IP address, entity, username and password.
 - Block beginning with `client = apiclient.ApiClient(` - Create an instance of our `ApiClient` class and set the properties we'll need to execute the API request.
 - `results = client.get_info()` - Execute the actual API request.
 - `return jsonify(results)` - Convert the API request results to JSON format and return the JSON back to the calling JavaScript, where it will be processed and displayed in our app.

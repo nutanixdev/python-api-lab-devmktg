@@ -7,7 +7,7 @@ Overview
 
 **Estimated time to complete: 60-90 MINUTES**
 
-The Nutanix Python API Lab will cover a couple of key points.
+The Nutanix Python API Lab will cover a few key points.
 
 - Creation of a simple Python Flask web application.
 - Creation of a single basic view to display Prism Central environment details for the user.
@@ -48,7 +48,7 @@ Please ensure you have a terminal (Linux/Mac) or command prompt (Windows) open a
 Virtual Environments
 ....................
 
-It is stringly recommended that your Python development is done inside a Python virtual environment.  Developing in a virtual environment can help replicate and test things like Python setup scripts and ensure all dependencies are met before running a Python script or application.  When installing dependencies, it is also beneficial to know a previously tested and verified dependency version has been installed.
+It is strongly recommended that your Python development is done inside a Python virtual environment.  Developing in a virtual environment can help replicate and test things like Python setup scripts and ensure all dependencies are met before running a Python script or application.  When installing dependencies, it is also beneficial to know a previously tested and verified dependency version has been installed.
 
 - Even though Python virtual environments (venv) are now included with Python 3, we'll use the following command to make sure they work.  Please run these commands from the directory your project will be stored in.
 
@@ -121,7 +121,7 @@ The easiest way to ensure these are available is by using a Python Setup Script,
 In our case, we will use the `requirements.txt` method.  This will ensure our dependencies are met, while also installing versions that are known to be compatible with our dashboard app.
 
 - Make sure you have created and activated a virtual environment, as outlined above.  For this lab, your virtual environment should be called `nutanix`.
-- Create a plain text in the project folder named `requirements.txt`.
+- Create a plain text file in the project folder named `requirements.txt`.
 
   This requirements file will handle the installation of dependencies required for this Python Flask application:
 

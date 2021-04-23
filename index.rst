@@ -32,7 +32,7 @@ Welcome to Nutanix Prism REST API Getting Started Lab (Python) - v1.3.
 What We Are Doing
 #################
   
-The Nutanix Python API Lab will cover a couple of key points.
+The Nutanix Python API Lab will cover a few key points.
 
 - Creation of a simple Python Flask web application.
 - Creation of a single basic view to display Prism Central environment details for the user.
@@ -90,7 +90,7 @@ Note that cURL is not required to create the demo app.  cURL command samples are
 Optional Components
 ###################
 
-In addition to the requirement components above, the following things are "nice to have".  They are not supplementary only and are not required this lab.
+In addition to the listed components above, the following things are "nice to have".  They are supplementary only and are not required this lab.
 
 - A `Github <https://github.com/>`_ account.  This can be created by signing up directly through GitHub.
 - The `GitHub Desktop <https://desktop.github.com/>`_ application (available for Windows and Mac only)
@@ -103,4 +103,9 @@ Cluster Details
 
 In a presenter-led environment you will be using a shared Nutanix cluster.  Please use this cluster when carrying out your cURL and application testing.
 
-In a self-paced environment you will need access to a Nutanix cluster along with the credentials required to access it.
+In a self-paced environment you will need access to a Nutanix cluster with Prism Central deployed, along with the credentials required to access Prism Central.
+
+.. note::
+
+   The lab assumes your Prism Element and Prism Central environments use the same username and password combination.  Creation of an app that uses different PE and PC credentials is beyond the scope of this lab.
+   

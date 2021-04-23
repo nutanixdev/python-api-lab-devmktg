@@ -52,9 +52,9 @@ Adding Third Party Files
 
 .. note::
 
-  If extracting the ZIP files from the command line, ensure they are extracted **directly** to the directories above and not into subdirectories.
+  When extracting the ZIP files, ensure they are extracted **directly** to the directories above and not into subdirectories.  Some operating systems can create sub-directories named after the ZIP file being extracted - this can cause issues.
 
-Once the files are downloaded and extracted to the correct locations, your directory structure should be as follows - please double-check these, as files being copied to incorrect locations will prevent the app from functioning correctly.
+Once the files are downloaded and extracted to the correct locations, your directory structure should be as follows - **please double-check these**, as files being copied to incorrect locations will prevent the app from functioning correctly.
 
 .. figure:: images/public_structure.png
 
