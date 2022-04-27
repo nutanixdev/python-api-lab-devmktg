@@ -40,3 +40,6 @@ Thumbs.db
 ###############
 _build
 build
+
+# Python Virtual Environment
+.venv
