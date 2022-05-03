@@ -18,8 +18,8 @@
 #
 import os
 import sys
-#import sphinx_bootstrap_theme
-#import sphinx_fontawesome
+import sphinx_bootstrap_theme
+import sphinx_fontawesome
 #sys.path.insert(0, os.path.abspath('..'))
 
 
@@ -33,7 +33,10 @@ import sys
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinx.ext.todo',
-    'sphinx.ext.ifconfig']
+    'sphinx.ext.ifconfig',
+    'sphinxcontrib.fulltoc',
+    'sphinx_fontawesome',
+    'sphinx_copybutton']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -71,7 +74,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'README.rst', 'venv']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -86,7 +89,8 @@ todo_include_todos = True
 # a list of builtin themes.
 #
 #html_theme = "sphinx_rtd_theme"
-#html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
+html_theme = 'bootstrap'
+html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 
 # (Optional) Logo. Should be small enough to fit the navbar (ideally 24x24).
 # Path should be relative to the ``_static`` files directory.
@@ -108,9 +112,9 @@ html_show_sphinx = False
 # html_theme_options = {}
 # Theme options are theme-specific and customize the look and feel of a
 # theme further.
-html_theme_options = {
-
-}
+# html_theme_options = {
+# 
+# }
 
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
@@ -163,7 +167,7 @@ html_theme_options = {
 
     # Location of link to source.
     # Options are "nav" (default), "footer" or anything else to exclude.
-    'source_link_position': "footer",
+    'source_link_position': "hidden",
 
     # Bootswatch (http://bootswatch.com/) theme.
     #
@@ -182,6 +186,10 @@ html_sidebars = {'**': ['localtoc.html']}
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_css_files = [
+  "fonts.css",
+  "custom.css"
+]
 
 # -- Options for HTMLHelp output ------------------------------------------
 
